@@ -1,1 +1,99 @@
-<h1>hello world</h1>
+{% extends 'base.html' %} 
+{% load static %}
+{% block body %}
+
+  <img src="{% static 'tennis_bg.jpg' %}" width="200px" alt="" />
+  <form action="/" method="POST">
+    # {% csrf_token %}
+    <input type="text" name="id" /><br />
+    <input type="password" name="pw" /><br />
+    <input type="submit" value="로그인" />
+  </form>
+
+  <script>
+    let myChartOne = document.getElementById('myChartOne').getContext('2d');
+    let tennisChartOne = document.getElementById('tennisChartOne').getContext('2d');
+
+    let barChart = new Chart(myChartOne, {
+      type : 'bar', //pie, line, doughnut, polarArea
+      data : {
+        labels : ['호주 오픈','롤랑 가로스', '윔블던', 'U.S 오픈'],
+        datasets : [{
+          label : '페더러 그랜드 슬램 우승횟수',
+          data : [
+            5,
+            1,
+            8,
+            5
+          ],
+          backgroundColor: [
+            'red',
+            'rgba(255,255,0,0.5)',
+            '#990000',
+            'skyblue'
+          ],
+          borderWidth: 2,
+          borderColor: '#000',
+          hoverBorderWidth: 5
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: '페더러 승패율',
+          fontSize: 30,
+          fontColor: 'red'
+        },
+        legend: {
+          display: true,
+          position: 'right' //left, right, top, bottom
+        },
+      }
+    });
+
+    let pieChartOne = new Chart(tennisChartOne, {
+      type: 'pie',
+      data : {
+        labels: ['승률', '패배율'],
+        datasets: [{
+          label: '페더러 승패율',
+          data: [
+            81.87,
+            18.13
+          ],
+          backgroundColor: [
+          'skyblue',
+          'red'
+          ],
+          borderWidth: 2,
+          borderColor: 'black',
+          hoverBorderWidth: 5
+        }]
+      },
+      options : {
+        title : {
+          display: true,
+          text: '페더러 승패율',
+          fontSize: 30,
+          fontColor: 'black'
+        },
+        legend: {
+          display: true,
+          position: 'top' //left, right, top, bottom
+        },
+        tooltips: {
+          enabled: false,
+        },
+        layout: {
+          padding : {
+            left : 10, 
+            right: 10,
+            top: 20,
+            bottom : 0 
+          }
+        }
+      }
+    });
+  </script>
+
+{% endblock body %}
